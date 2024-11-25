@@ -1,0 +1,92 @@
+[
+    {
+        "id": 1,
+        "title": "Winter Clothes for the Homeless",
+        "image": "https://i.ibb.co/fMSHkpW/1.jpg",
+        "description": "Help provide warm winter clothes to the homeless in Bangladesh. Your donations will go towards distributing jackets, blankets, hats, and gloves to people living on the streets during the harsh winter months.",
+        "status": "Active",
+        "contactInfo": "contact@winterclothesbd.org | +880 123 456 7890",
+        "division": "Dhaka"
+    },
+    {
+        "id": 2,
+        "title": "Warm Clothes for Orphans",
+        "image": "https://i.ibb.co/DRByy49/2.jpg",
+        "description": "Provide winter clothing to orphaned children in Bangladesh. Your donations will ensure that children in orphanages are warm and safe during the cold winter months with new jackets, socks, and thermal wear.",
+        "status": "Active",
+        "contactInfo": "orphans@winterdonations.org | +880 987 654 3210",
+        "division": "Chittagong"
+    },
+    {
+        "id": 3,
+        "title": "Winter Clothing for Refugees in Bangladesh",
+        "image": "https://i.ibb.co/Rbphgkg/3.jpg",
+        "description": "Support the Rohingya refugees in Bangladesh by donating warm clothing. Your contribution will provide winter coats, sweaters, and other warm apparel to families who are vulnerable to the cold.",
+        "status": "Active",
+        "contactInfo": "refugees@winteraid.org | +880 234 567 8901",
+        "division": "Cox's Bazar"
+    },
+    {
+        "id": 4,
+        "title": "Winter Clothes for the Elderly",
+        "image": "https://i.ibb.co/HT8T8yV/4.jpg",
+        "description": "Donate to help the elderly in rural Bangladesh stay warm during the winter months. Your contribution will provide blankets, shawls, and warm clothes to senior citizens who are struggling to survive in the cold.",
+        "status": "Active",
+        "contactInfo": "elderly@winterrelief.org | +880 345 678 9012",
+        "division": "Khulna"
+    },
+    {
+        "id": 5,
+        "title": "Winter Clothing for Slum Children",
+        "image": "https://i.ibb.co/qnpC1bc/5.jpg",
+        "description": "Help children living in the slums of Bangladesh stay warm this winter. Your donations will provide jackets, warm socks, and other winter essentials to children who are exposed to the harsh cold weather.",
+        "status": "Active",
+        "contactInfo": "slumchildren@winterdonations.org | +880 456 789 0123",
+        "division": "Rajshahi"
+    },
+    {
+        "id": 6,
+        "title": "Winter Clothing for Workers in Rural Bangladesh",
+        "image": "https://i.ibb.co/Y3kCMPW/7.jpg",
+        "description": "Donate winter clothing to the rural workers in Bangladesh who face extreme cold conditions while working outdoors. Your donation will help provide jackets, hats, and gloves to those who need it most.",
+        "status": "Active",
+        "contactInfo": "ruralworkers@winterrelief.org | +880 567 890 1234",
+        "division": "Barisal"
+    },
+    {
+        "id": 7,
+        "title": "Winter Clothes for the Elderly in Sylhet",
+        "image": "https://i.ibb.co/T8Cs5Vz/6.jpg",
+        "description": "Help the elderly in Sylhet by providing warm clothing such as blankets, jackets, and shawls. Your donation will ensure that they stay safe and warm during the coldest months of the year.",
+        "status": "Active",
+        "contactInfo": "sylhet@winterdonations.org | +880 678 901 2345",
+        "division": "Sylhet"
+    },
+    {
+        "id": 8,
+        "title": "Winter Relief for Dhaka Slums",
+        "image": "https://i.ibb.co/h2XHw5w/8.jpg",
+        "description": "Provide winter clothing to families living in the slums of Dhaka. Donations will be used to distribute jackets, blankets, and other necessary winter gear to help families survive the cold season.",
+        "status": "Active",
+        "contactInfo": "dhakaslums@winteraid.org | +880 789 012 3456",
+        "division": "Dhaka"
+    },
+    {
+        "id": 9,
+        "title": "Winter Clothes for Children in Khulna",
+        "image": "https://i.ibb.co/8M6b5bY/9.webp",
+        "description": "Donate winter clothing to children in Khulna. Your support will provide jackets, thermal wear, socks, and hats for children who are vulnerable to cold weather.",
+        "status": "Active",
+        "contactInfo": "khulnachildren@winterdonations.org | +880 890 123 4567",
+        "division": "Khulna"
+    },
+    {
+        "id": 10,
+        "title": "Winter Clothing for Chittagong Families",
+        "image": "https://i.ibb.co/ZYVyWsh/10.jpg",
+        "description": "Support families in Chittagong with the necessary winter clothing. Donations will help provide warm jackets, blankets, and hats to ensure families stay safe and comfortable during the winter months.",
+        "status": "Active",
+        "contactInfo": "chittagongfamilies@winterrelief.org | +880 234 567 8910",
+        "division": "Chittagong"
+    }
+]
