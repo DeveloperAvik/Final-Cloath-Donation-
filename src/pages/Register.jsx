@@ -1,9 +1,9 @@
 import { useState, useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom"; // Import useNavigate
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { AuthContext } from "../provider/AuthProvider";
 import { createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-import { auth } from "../firebase/firebase.config"
+import { auth } from "../firebase/firebase.config";
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -12,6 +12,7 @@ function Register() {
     const [passwordError, setPasswordError] = useState("");
     const [authError, setAuthError] = useState("");
     const [showPassword, setShowPassword] = useState(false);
+    const navigate = useNavigate(); // Initialize useNavigate
 
     const validatePassword = (password) => {
         const upperCaseRegex = /[A-Z]/;
@@ -54,6 +55,9 @@ function Register() {
                 const user = result.user;
                 setUser(user);
                 toast.success("Account created successfully!");
+                
+                // Redirect to Home page after successful registration
+                navigate("/");  // Redirect to the Home page
             }
         } catch (error) {
             if (error.code === 'auth/email-already-in-use') {
@@ -76,6 +80,7 @@ function Register() {
             const user = result.user;
             setUser(user);
             toast.success("Successfully logged in with Google!");
+            navigate("/home");  // Redirect to the Home page after Google login
         } catch (error) {
             toast.error("Google login failed: " + error.message);
         }
