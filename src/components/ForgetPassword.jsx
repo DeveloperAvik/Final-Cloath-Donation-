@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { sendPasswordResetEmail } from "../firebase/firebase.config"; // Ensure correct import
+import { sendPasswordResetEmail } from "../firebase/firebase.config"; 
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -20,7 +20,7 @@ function ForgetPassword() {
     sendPasswordResetEmail(auth, email)
       .then(() => {
         toast.success("Password reset email sent! Check your inbox.");
-        setEmail(""); // Clear the email field
+        setEmail(""); 
         setLoading(false);
       })
       .catch((error) => {

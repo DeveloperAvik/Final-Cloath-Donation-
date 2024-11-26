@@ -113,18 +113,7 @@ function Login() {
                                 Login
                             </button>
                         </div>
-                    </form>
-
-                    <div className="form-control text-center mt-4">
-                        <button
-                            onClick={handleGoogleLogin}
-                            className="btn btn-outline btn-primary w-full"
-                        >
-                            <FaGoogle className="mr-2" /> Login with Google
-                        </button>
-                    </div>
-
-                    <div className="text-center mt-4">
+                        <div className="">
                         <button
                             type="button"
                             onClick={handleResetPassword}
@@ -133,6 +122,18 @@ function Login() {
                             Forgot password?
                         </button>
                     </div>
+                    </form>
+
+                    <div className="form-control text-center mt-1">
+                        <button
+                            onClick={handleGoogleLogin}
+                            className="btn btn-outline btn-primary w-full"
+                        >
+                            <FaGoogle className="mr-2" /> Login with Google
+                        </button>
+                    </div>
+
+
 
                     <p className="text-center text-sm font-semi-bold text-base-400 mt-4">
                         Don't have an account?{" "}
