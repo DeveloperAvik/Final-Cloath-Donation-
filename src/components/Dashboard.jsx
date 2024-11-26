@@ -1,8 +1,8 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 
 const Dashboard = () => {
-    const { user, updateUser } = useContext(AuthContext);  
+    const { user, updateUserProfile, loading, error } = useContext(AuthContext);
     const [isEditing, setIsEditing] = useState(false);
     const [formData, setFormData] = useState({
         name: user ? user.displayName : '',
@@ -20,9 +20,19 @@ const Dashboard = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        updateUser(formData);
+        updateUserProfile(formData.name, formData.photoURL); // Call updateUserProfile function
         setIsEditing(false);  
     };
+
+    useEffect(() => {
+        if (user) {
+            setFormData({
+                name: user.displayName || '',
+                email: user.email,
+                photoURL: user.photoURL || ''
+            });
+        }
+    }, [user]);
 
     return (
         <div className="max-w-screen-xl mx-auto p-8">
@@ -72,6 +82,7 @@ const Dashboard = () => {
                                 onChange={handleChange}
                                 className="input input-bordered w-full"
                                 required
+                                disabled
                             />
                         </div>
 

@@ -1,41 +1,59 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { toast } from 'react-toastify'; // Import the toast function
+import 'react-toastify/dist/ReactToastify.css'; // Import toast styles
 
 const Donation = () => {
     const location = useLocation();
+    const navigate = useNavigate();
     const { campaign } = location.state || {};  
-
-    const [address, setAddress] = useState({
-        street: '',
-        city: '',
-        state: '',
-        zip: ''
+    
+    // Handle form state for donation form
+    const [donationDetails, setDonationDetails] = useState({
+        quantity: '',
+        itemType: '',
+        pickupLocation: '',
+        additionalNotes: ''
     });
 
-    const [isModalOpen, setIsModalOpen] = useState(false);  
+    // Handle input changes for donation form
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setAddress((prevState) => ({
+        setDonationDetails((prevState) => ({
             ...prevState,
             [name]: value,
         }));
     };
 
-    // Handle form submission and show success modal
+    // Handle donation form submission
     const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log("Address submitted:", address);
-        setIsModalOpen(true);
+        e.preventDefault();  // Prevent the default form submission
+
+        // Display a toast notification
+        toast.success("Thank you! We will reach your destination soon.");
+
+        // Clear the form
+        setDonationDetails({
+            quantity: '',
+            itemType: '',
+            pickupLocation: '',
+            additionalNotes: ''
+        });
     };
 
-    // Handle modal close
-    const closeModal = () => {
-        setIsModalOpen(false);
-    };
+    // Check if the user is authenticated (dummy check, implement your logic)
+    const isAuthenticated = true; // Replace this with actual auth logic
+
+    // Redirect to login page if not authenticated
+    if (!isAuthenticated) {
+        navigate("/login"); // Redirect to login page if user is not authenticated
+        return null; // Prevent rendering of donation form and campaign details
+    }
 
     return (
         <div className="max-w-screen-xl mx-auto p-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                {/* Campaign Details Section */}
                 <div className="card bg-base-100 shadow-xl p-6">
                     {campaign ? (
                         <>
@@ -54,81 +72,68 @@ const Donation = () => {
                     )}
                 </div>
 
+                {/* Donation Form Section */}
                 <div className="card bg-base-100 shadow-xl p-6">
-                    <h3 className="text-2xl font-semibold mb-4">Shipping Address</h3>
+                    <h3 className="text-2xl font-semibold mb-4">Donation Form</h3>
                     <form onSubmit={handleSubmit}>
                         <div className="form-control mb-4">
-                            <label htmlFor="street" className="label">Street</label>
+                            <label htmlFor="quantity" className="label">Quantity of Items</label>
                             <input
-                                type="text"
-                                id="street"
-                                name="street"
-                                value={address.street}
+                                type="number"
+                                id="quantity"
+                                name="quantity"
+                                value={donationDetails.quantity}
                                 onChange={handleChange}
-                                placeholder="Enter your street address"
+                                placeholder="Enter the quantity"
                                 className="input input-bordered w-full"
                                 required
                             />
                         </div>
 
                         <div className="form-control mb-4">
-                            <label htmlFor="city" className="label">City</label>
+                            <label htmlFor="itemType" className="label">Item Type</label>
                             <input
                                 type="text"
-                                id="city"
-                                name="city"
-                                value={address.city}
+                                id="itemType"
+                                name="itemType"
+                                value={donationDetails.itemType}
                                 onChange={handleChange}
-                                placeholder="Enter your city"
+                                placeholder="Enter item type (e.g., jacket, blanket)"
                                 className="input input-bordered w-full"
                                 required
                             />
                         </div>
 
                         <div className="form-control mb-4">
-                            <label htmlFor="state" className="label">State</label>
+                            <label htmlFor="pickupLocation" className="label">Pickup Location</label>
                             <input
                                 type="text"
-                                id="state"
-                                name="state"
-                                value={address.state}
+                                id="pickupLocation"
+                                name="pickupLocation"
+                                value={donationDetails.pickupLocation}
                                 onChange={handleChange}
-                                placeholder="Enter your state"
+                                placeholder="Enter pickup location"
                                 className="input input-bordered w-full"
                                 required
                             />
                         </div>
 
                         <div className="form-control mb-4">
-                            <label htmlFor="zip" className="label">Zip Code</label>
-                            <input
-                                type="text"
-                                id="zip"
-                                name="zip"
-                                value={address.zip}
+                            <label htmlFor="additionalNotes" className="label">Additional Notes (optional)</label>
+                            <textarea
+                                id="additionalNotes"
+                                name="additionalNotes"
+                                value={donationDetails.additionalNotes}
                                 onChange={handleChange}
-                                placeholder="Enter your zip code"
-                                className="input input-bordered w-full"
-                                required
+                                placeholder="Enter any additional notes"
+                                className="textarea textarea-bordered w-full"
                             />
                         </div>
 
-                        <button type="submit" className="btn btn-primary w-full">Submit Address</button>
+                        <button type="submit" className="btn btn-primary w-full">Submit Donation</button>
                     </form>
                 </div>
             </div>
-
-            {isModalOpen && (
-                <div className="modal modal-open">
-                    <div className="modal-box">
-                        <h3 className="text-lg font-bold">Donation Successful!</h3>
-                        <p className="py-4">Your donation address has been successfully submitted.</p>
-                        <div className="modal-action">
-                            <button onClick={closeModal} className="btn">Close</button>
-                        </div>
-                    </div>
-                </div>
-            )}
         </div>
     );
 };
