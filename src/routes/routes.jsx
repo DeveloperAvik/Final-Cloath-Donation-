@@ -13,6 +13,7 @@ import { useContext } from "react";
 import { AuthContext } from "../provider/AuthProvider"; 
 import Home from "../components/Home";
 import Dashboard from "../components/Dashboard";
+import ForgotPassword from "../components/ForgetPassword";
 
 
 const PrivateRoute = ({ element }) => {
@@ -64,6 +65,10 @@ const routers = createBrowserRouter([
             {
                 path: "/auth/login",
                 element: <Login />
+            },
+            {
+                path:"/auth/forget_password",
+                element: <ForgotPassword></ForgotPassword>
             },
             {
                 path: "/auth/register",

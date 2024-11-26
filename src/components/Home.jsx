@@ -14,9 +14,9 @@ function Home() {
 
     return (
         <div>
-            <Banner data-aos="fade-up"></Banner> {/* Apply AOS animation */}
+            <Banner data-aos="fade-up"></Banner> 
             <div className="mt-10">
-                <About data-aos="fade-left"></About> {/* Apply AOS animation */}
+                <About data-aos="fade-left"></About> 
             </div>
         </div>
     );

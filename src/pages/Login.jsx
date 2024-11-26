@@ -1,28 +1,27 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { AuthContext } from "../provider/AuthProvider";
 import { FaEye, FaEyeSlash, FaGoogle } from "react-icons/fa";
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { auth, GoogleAuthProvider, signInWithPopup } from "../firebase/firebase.config"; 
+import { auth, sendPasswordResetEmail, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "../firebase/firebase.config"; 
 
 function Login() {
-    const { userLogin, setUser, loading, error } = useContext(AuthContext);
     const [formError, setFormError] = useState("");
     const [showPassword, setShowPassword] = useState(false);
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
     const navigate = useNavigate();
 
+    // Handle regular login
     const handleLogin = (e) => {
         e.preventDefault();
-        const form = e.target;
-        const email = form.email.value;
-        const password = form.password.value;
 
-        setFormError("");
-        userLogin(email, password)
+        setFormError("");  // Clear any previous error
+
+        // Logic for user login with email and password
+        signInWithEmailAndPassword(auth, email, password)
             .then((result) => {
                 const user = result.user;
-                setUser(user);
                 toast.success("Successfully logged in!");
                 navigate("/");
             })
@@ -32,17 +31,32 @@ function Login() {
             });
     };
 
+    // Handle login via Google
     const handleGoogleLogin = async () => {
         const provider = new GoogleAuthProvider();
         try {
             const result = await signInWithPopup(auth, provider);
             const user = result.user;
-            setUser(user);
             toast.success("Successfully logged in with Google!");
             navigate("/");
         } catch (error) {
             toast.error("Google login failed: " + error.message);
         }
+    };
+
+    // Handle password reset
+    const handleResetPassword = () => {
+        if (!email) {
+            toast.error("Please enter your email.");
+            return;
+        }
+        sendPasswordResetEmail(auth, email)
+            .then(() => {
+                toast.success("Password reset email sent!");
+            })
+            .catch((error) => {
+                toast.error("Error sending password reset email: " + error.message);
+            });
     };
 
     return (
@@ -57,10 +71,12 @@ function Login() {
                                 <span className="label-text">Email</span>
                             </label>
                             <input
-                                name="email"
                                 type="email"
+                                name="email"
                                 placeholder="Enter your email"
                                 className="input input-bordered"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
                                 required
                             />
                         </div>
@@ -70,10 +86,12 @@ function Login() {
                                 <span className="label-text">Password</span>
                             </label>
                             <input
-                                name="password"
                                 type={showPassword ? "text" : "password"}
+                                name="password"
                                 placeholder="Enter your password"
                                 className="input input-bordered"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
                                 required
                             />
                             <button
@@ -83,31 +101,36 @@ function Login() {
                             >
                                 {showPassword ? <FaEyeSlash /> : <FaEye />}
                             </button>
-                            <label className="label">
-                                <Link to="/auth/forgot-password" className="label-text-alt link link-hover">
-                                    Forgot password?
-                                </Link>
-                            </label>
                         </div>
 
                         {formError && <p className="text-red-500 text-sm">{formError}</p>}
 
                         <div className="form-control mt-1">
                             <button
+                                type="submit"
                                 className="btn btn-primary"
-                                disabled={loading}
                             >
-                                {loading ? "Logging in..." : "Login"}
+                                Login
                             </button>
                         </div>
                     </form>
-                    {/* Google login button */}
-                    <div className="form-control text-center">
+
+                    <div className="form-control text-center mt-4">
                         <button
                             onClick={handleGoogleLogin}
                             className="btn btn-outline btn-primary w-full"
                         >
                             <FaGoogle className="mr-2" /> Login with Google
+                        </button>
+                    </div>
+
+                    <div className="text-center mt-4">
+                        <button
+                            type="button"
+                            onClick={handleResetPassword}
+                            className="btn btn-link"
+                        >
+                            Forgot password?
                         </button>
                     </div>
 
@@ -117,8 +140,6 @@ function Login() {
                             Register
                         </Link>
                     </p>
-
-
                 </div>
             </div>
         </>
